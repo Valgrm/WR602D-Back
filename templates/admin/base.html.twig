@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Backoffice{% endblock %}</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: sans-serif; background: #f3f4f6; display: flex; min-height: 100vh; }
+        nav { width: 220px; background: #1e293b; color: white; padding: 1.5rem 1rem; flex-shrink: 0; }
+        nav h1 { font-size: 1rem; margin-bottom: 2rem; color: #94a3b8; text-transform: uppercase; letter-spacing: .05em; }
+        nav a { display: block; padding: .6rem .75rem; color: #cbd5e1; text-decoration: none; border-radius: 4px; margin-bottom: .25rem; }
+        nav a:hover, nav a.active { background: #334155; color: white; }
+        nav .logout { margin-top: auto; border-top: 1px solid #334155; padding-top: 1rem; margin-top: 2rem; }
+        main { flex: 1; padding: 2rem; }
+        h2 { margin-bottom: 1.5rem; font-size: 1.5rem; }
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,.1); }
+        th { background: #f8fafc; padding: .75rem 1rem; text-align: left; font-size: .875rem; color: #64748b; border-bottom: 1px solid #e2e8f0; }
+        td { padding: .75rem 1rem; border-bottom: 1px solid #f1f5f9; font-size: .875rem; }
+        tr:last-child td { border-bottom: none; }
+        .btn { display: inline-block; padding: .4rem .9rem; border-radius: 4px; font-size: .875rem; text-decoration: none; border: none; cursor: pointer; }
+        .btn-primary { background: #4f46e5; color: white; }
+        .btn-secondary { background: #e2e8f0; color: #334155; }
+        .btn-danger { background: #ef4444; color: white; }
+        .btn:hover { opacity: .85; }
+        .actions { display: flex; gap: .5rem; }
+        .card { background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,.1); margin-bottom: 1rem; }
+        .form-group { margin-bottom: 1rem; }
+        label { display: block; margin-bottom: .25rem; font-size: .875rem; color: #374151; font-weight: 500; }
+        input, select { width: 100%; padding: .5rem .75rem; border: 1px solid #d1d5db; border-radius: 4px; font-size: .875rem; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .stat { background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,.1); text-align: center; }
+        .stat-value { font-size: 2rem; font-weight: bold; color: #4f46e5; }
+        .stat-label { color: #64748b; font-size: .875rem; }
+        .stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 400px; }
+    </style>
+</head>
+<body>
+<nav>
+    <h1>Backoffice</h1>
+    <a href="{{ path('admin_dashboard') }}" {% if app.request.attributes.get('_route') == 'admin_dashboard' %}class="active"{% endif %}>Tableau de bord</a>
+    <a href="{{ path('admin_users') }}" {% if 'admin_user' in app.request.attributes.get('_route') %}class="active"{% endif %}>Utilisateurs</a>
+    <a href="{{ path('admin_games') }}" {% if 'admin_game' in app.request.attributes.get('_route') %}class="active"{% endif %}>Parties</a>
+    <div class="logout">
+        <a href="{{ path('admin_logout') }}">Se déconnecter</a>
+    </div>
+</nav>
+<main>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

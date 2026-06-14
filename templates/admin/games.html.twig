@@ -1,0 +1,30 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block content %}
+<div class="header">
+    <h2>Parties</h2>
+    <a href="{{ path('admin_game_new') }}" class="btn btn-primary">+ Ajouter</a>
+</div>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th><th>Score</th><th>Utilisateur</th><th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for game in games %}
+        <tr>
+            <td>{{ game.id }}</td>
+            <td>{{ game.score }}</td>
+            <td>{{ game.user ? game.user.username : '—' }}</td>
+            <td class="actions">
+                <a href="{{ path('admin_game_edit', {id: game.id}) }}" class="btn btn-secondary">Modifier</a>
+                <form method="post" action="{{ path('admin_game_delete', {id: game.id}) }}" onsubmit="return confirm('Supprimer cette partie ?')">
+                    <button class="btn btn-danger">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

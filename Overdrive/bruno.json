@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Overdrive",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

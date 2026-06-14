@@ -1,0 +1,15 @@
+{% extends 'admin/base.html.twig' %}
+
+{% block content %}
+<h2>Tableau de bord</h2>
+<div class="stats">
+    <div class="stat">
+        <div class="stat-value">{{ user_count }}</div>
+        <div class="stat-label">Utilisateurs</div>
+    </div>
+    <div class="stat">
+        <div class="stat-value">{{ game_count }}</div>
+        <div class="stat-label">Parties</div>
+    </div>
+</div>
+{% endblock %}

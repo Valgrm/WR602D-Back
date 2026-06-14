@@ -1,0 +1,23 @@
+meta {
+  name: Login
+  type: http
+  seq: 1
+}
+
+post {
+  url: http://symfony.mmi-troyes.fr/api/login
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "val@gmail.com",
+    "password": "A123"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
